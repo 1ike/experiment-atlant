@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native';
+import ViewPager from 'react-native-pager-view';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/ui';
 import { RootStackScreenProps } from '../navigation/types';
-import ViewPager from 'react-native-pager-view';
 
 
 export default function OnboardingScreen({ navigation }: RootStackScreenProps<'Onboarding'>) {
