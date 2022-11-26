@@ -3,6 +3,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './styles/hooks/useColorScheme';
+import AppThemeProvider from './styles/AppThemeProvider';
 import Navigation from './navigation';
 
 
@@ -16,8 +17,10 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <Navigation colorScheme={colorScheme} />
-      <StatusBar />
+      <AppThemeProvider>
+        <Navigation colorScheme={colorScheme} />
+        <StatusBar translucent />
+      </AppThemeProvider>
     </SafeAreaProvider>
   );
 }

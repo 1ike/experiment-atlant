@@ -1,11 +1,12 @@
 import {
-  StyleSheet, Button, Image, Pressable, ImageRequireSource,
+  StyleSheet, Image, ImageRequireSource,
 } from 'react-native';
 import ViewPager from 'react-native-pager-view';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Text, View } from '../../../components/ui';
-import { RootStackScreenProps } from '../../../navigation/types';
+import {
+  Text, View, ButtonClearSecondary, SafeAreaView, Button,
+} from '@ui';
+import { RootStackScreenProps } from '@navigation/types';
 
 
 const step1Img = require('../images/step_1.png') as ImageRequireSource;
@@ -39,7 +40,7 @@ const steps: Step[] = [
 
 export default function OnboardingScreen({ navigation }: RootStackScreenProps<'Onboarding'>) {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView>
       <ViewPager style={styles.container}>
         {steps.map((step, index, array) => {
           const isLastStep = index === array.length - 1;
@@ -47,21 +48,22 @@ export default function OnboardingScreen({ navigation }: RootStackScreenProps<'O
           return (
             // eslint-disable-next-line react/no-array-index-key
             <View key={index} style={styles.step}>
-              <Pressable
-                style={[styles.skipContainer, isLastStep && styles.skipContainerHide]}
+              <ButtonClearSecondary
+                containerStyle={[styles.skipContainer, isLastStep && styles.skipContainerHide]}
                 onPress={() => console.log('aaa = ')}
               >
-                <Text style={styles.skipTitle}>Пропустить</Text>
-              </Pressable>
+                Пропустить
+              </ButtonClearSecondary>
               <Image
                 source={step.img}
-                resizeMode='contain'
+                resizeMode="contain"
                 style={styles.img}
               />
               <Text style={styles.title}>{step.title}</Text>
               <Text>{step.text}</Text>
               <Button
                 title={isLastStep ? 'Далее' : 'Начать'}
+                containerStyle={styles.nextContainer}
               />
             </View>
           );
@@ -74,32 +76,34 @@ export default function OnboardingScreen({ navigation }: RootStackScreenProps<'O
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // alignItems: 'center',
-    // justifyContent: 'center',
   },
   step: {
     flex: 1,
-    // justifyContent: 'center',
     alignItems: 'center',
   },
   img: {
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
   },
   skipContainer: {
     position: 'relative',
+    alignSelf: 'flex-end',
     marginTop: 20,
+    marginBottom: 20,
   },
   skipContainerHide: {
     top: -100,
   },
-  skipTitle: {
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
   title: {
+    marginTop: 50,
+    marginBottom: 10,
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  text: {
+    fontSize: 18,
+  },
+  nextContainer: {
+    marginTop: 50,
+    marginBottom: 25,
   },
 });
