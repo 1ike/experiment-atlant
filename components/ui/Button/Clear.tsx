@@ -1,10 +1,10 @@
-import { Button as RNEButton, ButtonProps } from '@rneui/themed';
+import { Button, ButtonProps } from '.';
 
 
-export type ButtonClearProps = React.PropsWithChildren<ButtonProps>;
+export type ButtonClearProps = ButtonProps;
 
 export function ButtonClear(props: ButtonClearProps) {
   return (
-    <RNEButton {...props} type="clear" />
+    <Button {...props} type="clear" />
   );
 }

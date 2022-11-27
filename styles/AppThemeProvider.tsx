@@ -1,30 +1,10 @@
 import { useEffect } from 'react';
-import {
-  ThemeProvider, createTheme, useThemeMode,
-} from '@rneui/themed';
+import { ThemeProvider, useThemeMode } from '@rneui/themed';
 
 import { View } from '../components/ui/View';
 import useColorScheme from './hooks/useColorScheme';
+import { theme } from './theme';
 
-
-declare module '@rneui/themed' {
-  export interface Colors {
-    buttonClearSecondaryTitle: string;
-  }
-}
-
-const appTheme = createTheme({
-  lightColors: {
-    // primary: '#899656',
-    buttonClearSecondaryTitle: 'red',
-    // background: 'pink'
-  },
-  darkColors: {
-    // primary: '#344512',
-    background: 'red'
-  },
-  mode: 'light',
-});
 
 type ChildrenProps = { children: React.ReactNode };
 
@@ -45,7 +25,7 @@ function ColorScheme({ children }: ChildrenProps) {
 
 export default function AppThemeProvider({ children }: ChildrenProps) {
   return (
-    <ThemeProvider theme={appTheme}>
+    <ThemeProvider theme={theme}>
       <ColorScheme>
         {children}
       </ColorScheme>

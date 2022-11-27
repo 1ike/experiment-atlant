@@ -1,1 +1,1 @@
-export { Button } from '@rneui/themed';
+export { Button, ButtonProps } from '@rneui/themed';

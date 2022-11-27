@@ -10,6 +10,6 @@ export function ButtonClearSecondary({ titleStyle, ...otherProps }: ButtonClearS
   const titleColor = theme.colors.buttonClearSecondaryTitle;
 
   return (
-    <ButtonClear titleStyle={[{ color: titleColor }, titleStyle]} {...otherProps} />
+    <ButtonClear titleStyle={[{ color: titleColor, fontSize: 20 }, titleStyle]} {...otherProps} />
   );
 }
