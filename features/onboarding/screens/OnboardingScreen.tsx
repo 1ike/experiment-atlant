@@ -1,52 +1,23 @@
 import { useRef, useState } from 'react';
-import { StyleSheet, Image, ImageRequireSource } from 'react-native';
+import { StyleSheet, Image } from 'react-native';
 import ViewPager, { PagerViewOnPageSelectedEvent } from 'react-native-pager-view';
 
 import {
   Text, View, ButtonClearSecondary, ScreenLayout, ButtonPrimary,
 } from '@ui';
 import { RootStackScreenProps } from '@navigation/types';
+import Progress from '../components/Progress';
+import { steps } from '../stepData';
 
-/* eslint-disable global-require */
-/* eslint-disable @typescript-eslint/no-var-requires */
-const step1Img = require('../images/step_1.png') as ImageRequireSource;
-const step2Img = require('../images/step_2.png') as ImageRequireSource;
-const step3Img = require('../images/step_3.png') as ImageRequireSource;
-/* eslint-enable @typescript-eslint/no-var-requires */
-/* eslint-enable global-require */
-
-type Step = {
-  title: string,
-  text: string,
-  img: ImageRequireSource,
-};
-
-const steps: Step[] = [
-  {
-    title: 'Создавай задачи',
-    text: 'Lorem ipsum dolor sit amet consectetur adipisicing.',
-    img: step1Img,
-  },
-  {
-    title: 'Управляй временем',
-    text: 'Lorem ipsum dolor sit amet consectetur adipisicing.',
-    img: step2Img,
-  },
-  {
-    title: 'Отслеживай прогресс',
-    text: 'Lorem ipsum dolor sit amet consectetur adipisicing.',
-    img: step3Img,
-  },
-];
 
 export default function OnboardingScreen({ navigation }: RootStackScreenProps<'Onboarding'>) {
   const viewPagerRef = useRef<ViewPager>(null);
 
-  const [isActiveStep, setIsActiveStep] = useState<number>(0);
+  const [activeStepIndex, setActiveStepIndex] = useState<number>(0);
 
   const onFinishOrSkip = () => console.log(' This is the end ');
   const onPageSelected = (e: PagerViewOnPageSelectedEvent) => {
-    setIsActiveStep(e.nativeEvent.position);
+    setActiveStepIndex(e.nativeEvent.position);
   };
 
   return (
@@ -77,6 +48,7 @@ export default function OnboardingScreen({ navigation }: RootStackScreenProps<'O
               />
               <Text style={styles.title}>{step.title}</Text>
               <Text>{step.text}</Text>
+              <Progress activeIndex={activeStepIndex} steps={steps} />
               <ButtonPrimary
                 title={isLastStep ? 'Начать' : 'Далее'}
                 containerStyle={styles.nextContainer}
