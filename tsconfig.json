@@ -6,7 +6,10 @@
     "paths": {
       "@components/*": ["./components/*"],
       "@navigation/*": ["./navigation/*"],
-      "@ui": ["./components/ui/index.ts"]
+      "@ui": ["./components/ui/index.ts"],
+      "@state/*": ["./state/*"],
+      "@features/*": ["./features/*"],
+      "@store": ["./state/store.ts"]
     }
   }
 }
