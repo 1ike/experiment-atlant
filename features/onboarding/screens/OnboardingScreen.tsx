@@ -6,8 +6,8 @@ import {
   Text, View, ButtonClearSecondary, ScreenLayout, ButtonPrimary,
 } from '@ui';
 import { RootStackScreenProps } from '@navigation/types';
-import { useAppDispatch, useAppSelector } from '@store';
-import { onboardingSkip, selectOnboardingSkip } from '../state/onboarding';
+import { useAppDispatch } from '@store';
+import { onboardingSkip } from '../state/onboarding';
 import Progress from '../components/Progress';
 import { steps } from '../stepData';
 
@@ -17,11 +17,10 @@ export default function OnboardingScreen({ navigation }: RootStackScreenProps<'O
 
   const [activeStepIndex, setActiveStepIndex] = useState<number>(0);
 
-  const res = useAppSelector(selectOnboardingSkip);
-  console.log('res = ', res);
-
   const dispatch = useAppDispatch();
-  const onFinishOrSkip = () => dispatch(onboardingSkip());
+  const onFinishOrSkip = () => {
+    dispatch(onboardingSkip());
+  };
 
   const onPageSelected = (e: PagerViewOnPageSelectedEvent) => {
     setActiveStepIndex(e.nativeEvent.position);
