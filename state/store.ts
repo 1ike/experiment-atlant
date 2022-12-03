@@ -13,15 +13,18 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import onboardingReducer, { onboardingReducerName } from '../features/onboarding/state/onboarding';
+import authReducer, { authReducerName } from '../features/auth/state/auth';
 
 
 const rootReducer = combineReducers({
   [onboardingReducerName]: onboardingReducer,
+  [authReducerName]: authReducer,
 });
 
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
+  blacklist: [authReducerName],
   whitelist: [onboardingReducerName],
 };
 
