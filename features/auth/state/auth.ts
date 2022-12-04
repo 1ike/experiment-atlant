@@ -1,8 +1,11 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {
+  createSlice, PayloadAction, combineReducers, createAction,
+} from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { persistReducer } from 'redux-persist';
 
 import type { RootState } from '@state/store';
+import createSecureStorage from '../../../lib/SecureStorage';
 
 
 export type Token = string | null;
@@ -11,51 +14,128 @@ export type Tokens = {
   refreshToken: Token,
 };
 
+
+const logoutActionCreator = createAction('LOGOUT');
+const setTokensActionCreator = createAction<Tokens>('SET_TOKENS');
+
+/**
+ * Non secure persist part of auth (persist with AsyncStorage).
+ */
+
 type User = {
   name: string,
   email: string,
+} | null;
+
+type InitialState = {
+  accessToken: Token | null,
+  user: User | null,
 };
 
-type AuthState = Tokens & { user: User | null };
-
-const initialState: AuthState = {
+const initialState: InitialState = {
   accessToken: null,
-  refreshToken: null,
   user: null,
 };
 
-const authSlice = createSlice({
-  name: 'auth',
+
+const nonSecurePersistSlice = createSlice({
+  name: 'nonSecurePersist',
   initialState,
   /* eslint-disable no-param-reassign */
   reducers: {
-    setTokens(state, { payload }: PayloadAction<Tokens>) {
-      return { ...state, ...payload };
-    },
     setAccessToken(state, { payload: token }: PayloadAction<Token>) {
-      console.log('token = ', token);
       state.accessToken = token;
     },
-    logout() {
-      return initialState;
+    setUser(state, { payload: user }: PayloadAction<User>) {
+      state.user = user;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(logoutActionCreator, () => initialState)
+      .addCase(setTokensActionCreator, (state, { payload: tokens }) => {
+        state.accessToken = tokens.accessToken;
+      });
   },
   /* eslint-enable no-param-reassign */
 });
 
-export const { logout, setTokens, setAccessToken } = authSlice.actions;
+const nonSecurePersistReducerName = nonSecurePersistSlice.name;
 
-
-export const authReducerName = authSlice.name;
-
-const authPersistConfig = {
-  key: authReducerName,
+const nonSecurePersistConfig = {
+  key: nonSecurePersistReducerName,
   storage: AsyncStorage,
-  blacklist: ['refreshToken'] as (keyof AuthState)[],
 };
 
-export default persistReducer(authPersistConfig, authSlice.reducer);
+const nonSecurePersistReducer = persistReducer(
+  nonSecurePersistConfig,
+  nonSecurePersistSlice.reducer,
+);
 
 
-export const selectAccessToken = (state: RootState) => state.auth.accessToken;
-export const selectRefreshToken = (state: RootState) => state.auth.refreshToken;
+/**
+ * Secure persist part of auth (persist with SecureStorage based on expo-secure-store).
+ */
+
+type SecurePersistInitialState = {
+  refreshToken: Token | null,
+};
+
+const securePersistInitialState: SecurePersistInitialState = {
+  refreshToken: null,
+};
+
+
+const securePersistSlice = createSlice({
+  name: 'securePersist',
+  initialState: securePersistInitialState,
+  /* eslint-disable no-param-reassign */
+  reducers: {
+    setRefreshToken(state, { payload: token }: PayloadAction<Token>) {
+      state.refreshToken = token;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(logoutActionCreator, () => securePersistInitialState)
+      .addCase(setTokensActionCreator, (state, { payload: tokens }) => {
+        state.refreshToken = tokens.refreshToken;
+      });
+  },
+  /* eslint-enable no-param-reassign */
+});
+
+const securePersistReducerName = securePersistSlice.name;
+
+const securePersistConfig = {
+  key: securePersistReducerName,
+  storage: createSecureStorage(),
+};
+
+const securePersistReducer = persistReducer(securePersistConfig, securePersistSlice.reducer);
+
+
+/**
+ * Auth
+ */
+export const authReducerName = 'auth';
+
+export default combineReducers({
+  [nonSecurePersistReducerName]: nonSecurePersistReducer,
+  [securePersistReducerName]: securePersistReducer,
+});
+
+
+export const { setAccessToken, setUser } = nonSecurePersistSlice.actions;
+export const { setRefreshToken } = securePersistSlice.actions;
+export const logout = logoutActionCreator;
+export const setTokens = setTokensActionCreator;
+
+
+export const selectAccessToken = (state: RootState) => state
+  .auth[nonSecurePersistReducerName].accessToken;
+export const isAuth = (state: RootState) => Boolean(
+  state.auth[nonSecurePersistReducerName].user,
+);
+export const selectRefreshToken = (state: RootState) => state
+  .auth[securePersistReducerName].refreshToken;
