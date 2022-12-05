@@ -46,6 +46,17 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     "react/require-default-props": "off",
     "react/jsx-props-no-spreading": "warn",
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        "": 'never',
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
     "no-console": [
       "warn",
       {

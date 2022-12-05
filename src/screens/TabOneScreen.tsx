@@ -3,11 +3,11 @@ import { useEffect } from 'react';
 
 import {
   selectAccessToken, selectRefreshToken, setAccessToken, setRefreshToken, logout,
-} from '../features/auth/state/auth';
-import { useAppSelector, useAppDispatch } from '../state/store';
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
-import { RootTabScreenProps } from '../navigation/types';
+} from '~/features/auth/state/auth';
+import { useAppSelector, useAppDispatch } from '$store';
+import EditScreenInfo from '~/components/EditScreenInfo';
+import { Text, View } from '~/components/Themed';
+import { RootTabScreenProps } from '~/navigation/types';
 
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {

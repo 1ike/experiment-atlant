@@ -10,11 +10,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { ColorSchemeName, Pressable } from 'react-native';
 
-import { useAppSelector } from '../state/store';
-import { selectOnboardingSkip } from '../features/onboarding/state/onboarding';
-import Colors from '../styles/Colors';
-import useColorScheme from '../styles/hooks/useColorScheme';
-import OnboardingScreen from '../features/onboarding/screens/OnboardingScreen';
+import { useAppSelector } from '$store';
+import { selectOnboardingSkip } from '~/features/onboarding/state/onboarding';
+import Colors from '~/styles/Colors';
+import useColorScheme from '~/styles/hooks/useColorScheme';
+import OnboardingScreen from '~/features/onboarding/screens/OnboardingScreen';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import TabOneScreen from '../screens/TabOneScreen';

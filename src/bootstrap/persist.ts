@@ -1,5 +1,5 @@
 import { persistStore } from 'redux-persist';
-import { AppStore } from '../state/store';
+import { AppStore } from '$store';
 
 
 export default (store: AppStore) => new Promise((resolve, reject) => {

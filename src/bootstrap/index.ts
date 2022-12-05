@@ -1,4 +1,4 @@
-import store from '../state/store';
+import store from '$store';
 import persist from './persist';
 import fonts from './fonts';
 

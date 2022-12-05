@@ -12,8 +12,8 @@ import {
 } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import onboardingReducer, { onboardingReducerName } from '../features/onboarding/state/onboarding';
-import authReducer, { authReducerName } from '../features/auth/state/auth';
+import onboardingReducer, { onboardingReducerName } from '~/features/onboarding/state/onboarding';
+import authReducer, { authReducerName } from '~/features/auth/state/auth';
 
 
 const rootReducer = combineReducers({
