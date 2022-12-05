@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 
-import { beforeRendering, afterRendering } from './index';
+import { beforeRendering, afterRendering } from '.';
 
 export default function useBootstrap() {
   const [isLoadingComplete, setLoadingComplete] = useState(false);

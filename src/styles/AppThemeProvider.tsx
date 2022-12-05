@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { ThemeProvider, useThemeMode } from '@rneui/themed';
 
-import { View } from '../components/ui/View';
 import useColorScheme from './hooks/useColorScheme';
+import { View } from '$ui';
 import { theme } from './theme';
 
 

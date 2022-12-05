@@ -4,7 +4,7 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { persistReducer } from 'redux-persist';
 
-import type { RootState } from '@state/store';
+import type { RootState } from '../../../state/store';
 import createSecureStorage from '../../../lib/SecureStorage';
 
 

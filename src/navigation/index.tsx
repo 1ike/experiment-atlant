@@ -10,8 +10,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { ColorSchemeName, Pressable } from 'react-native';
 
-import { useAppSelector } from '@store';
-import { selectOnboardingSkip } from '@features/onboarding/state/onboarding';
+import { useAppSelector } from '../state/store';
+import { selectOnboardingSkip } from '../features/onboarding/state/onboarding';
 import Colors from '../styles/Colors';
 import useColorScheme from '../styles/hooks/useColorScheme';
 import OnboardingScreen from '../features/onboarding/screens/OnboardingScreen';
@@ -41,7 +41,7 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
-  const onboardingSkip = useAppSelector(selectOnboardingSkip)
+  const onboardingSkip = useAppSelector(selectOnboardingSkip);
 
   return (
     <Stack.Navigator>
@@ -50,7 +50,7 @@ function RootNavigator() {
       {/* <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} /> */}
       {/* <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
-      </Stack.Group>*/}
+      </Stack.Group> */}
     </Stack.Navigator>
   );
 }

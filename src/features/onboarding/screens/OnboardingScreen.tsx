@@ -4,9 +4,9 @@ import ViewPager, { PagerViewOnPageSelectedEvent } from 'react-native-pager-view
 
 import {
   Text, View, ButtonClearSecondary, ScreenLayout, ButtonPrimary,
-} from '@ui';
-import { RootStackScreenProps } from '@navigation/types';
-import { useAppDispatch } from '@store';
+} from '$ui';
+import { RootStackScreenProps } from '../../../navigation/types';
+import { useAppDispatch } from '../../../state/store';
 import { onboardingSkip } from '../state/onboarding';
 import Progress from '../components/Progress';
 import { steps } from '../stepData';

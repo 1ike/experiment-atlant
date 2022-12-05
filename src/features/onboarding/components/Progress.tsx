@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { makeStyles } from '@rneui/themed';
 
-import { View } from '@ui';
+import { View } from '$ui';
 import { Step } from '../stepData';
 
 
