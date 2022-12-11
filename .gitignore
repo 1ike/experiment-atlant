@@ -19,4 +19,4 @@ Makefile
 **/.idea
 **/.vscode
 .env
-/screenshots/*.rar
+/screenshots
