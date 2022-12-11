@@ -1,3 +1,7 @@
+/**
+ * For deleteting (it is not RNE colors)
+ */
+
 const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';
 

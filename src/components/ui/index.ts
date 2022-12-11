@@ -7,3 +7,5 @@ export { Button } from './Button';
 export { ButtonPrimary } from './Button/Primary';
 export { ButtonClear } from './Button/Clear';
 export { ButtonClearSecondary } from './Button/ClearSecondary';
+
+export { Input } from './forms/Input';

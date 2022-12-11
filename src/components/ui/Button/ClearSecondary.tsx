@@ -10,6 +10,10 @@ export function ButtonClearSecondary({ titleStyle, ...otherProps }: ButtonClearS
   const titleColor = theme.colors.buttonClearSecondaryTitle;
 
   return (
-    <ButtonClear titleStyle={[{ color: titleColor, fontSize: 20 }, titleStyle]} {...otherProps} />
+    <ButtonClear
+      {...otherProps}
+      // eslint-disable-next-line react-native/no-inline-styles
+      titleStyle={[{ color: titleColor, fontSize: 20 }, titleStyle]}
+    />
   );
 }

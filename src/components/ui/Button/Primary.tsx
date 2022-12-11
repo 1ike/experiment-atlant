@@ -25,8 +25,8 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     borderRadius: 7,
-    paddingVertical: 15,
-    paddingHorizontal: 15,
+    paddingVertical: 17,
+    paddingHorizontal: 17,
     backgroundColor: theme.colors.black,
   },
   title: {

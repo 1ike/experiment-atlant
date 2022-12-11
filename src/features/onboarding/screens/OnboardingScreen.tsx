@@ -93,9 +93,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
-  text: {
-    fontSize: 18,
-  },
   nextContainer: {
     marginTop: 50,
   },
