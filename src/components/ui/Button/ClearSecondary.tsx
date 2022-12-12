@@ -11,9 +11,9 @@ export function ButtonClearSecondary({ titleStyle, ...otherProps }: ButtonClearS
 
   return (
     <ButtonClear
-      {...otherProps}
       // eslint-disable-next-line react-native/no-inline-styles
       titleStyle={[{ color: titleColor, fontSize: 20 }, titleStyle]}
+      {...otherProps}
     />
   );
 }

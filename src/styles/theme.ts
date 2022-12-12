@@ -6,34 +6,41 @@ declare module '@rneui/themed' {
   export interface Colors {
     buttonClearSecondaryTitle: string;
     inputBackground: string;
+    textPrimary: string;
+    textSecondary: string;
   }
 
   export interface Theme {
     screenPaddingHorizontal: FlexStyle['paddingHorizontal'];
     screenPaddingVertical: FlexStyle['paddingVertical'];
+    fontSizeSmall: number;
+    fontSizeMid: number;
   }
 }
 
 
 const buttonClearSecondaryTitle = '#8a8a8a';
-const inputBackground = '#e7e7e7';
+const textPrimary = '#222';
+const textSecondary = '#aaa';
+const inputBackground = '#e8e8e8';
 
 export const theme = createTheme({
   lightColors: {
-    // primary: '#899656',
+    textPrimary,
+    textSecondary,
     buttonClearSecondaryTitle,
     inputBackground,
-    // background: 'pink'
   },
   darkColors: {
-    // primary: '#344512',
+    textPrimary,
+    textSecondary,
     buttonClearSecondaryTitle,
     inputBackground,
-    // background: 'red'
-
   },
   mode: 'light',
 
   screenPaddingHorizontal: 15,
-  screenPaddingVertical: 20,
+  screenPaddingVertical: 15,
+  fontSizeSmall: 15,
+  fontSizeMid: 18,
 });

@@ -27,7 +27,7 @@ export default function OnboardingScreen({ navigation }: RootStackScreenProps<'O
   };
 
   return (
-    <ScreenLayout>
+    <ScreenLayout withPadding>
       <ViewPager
         ref={viewPagerRef}
         onPageSelected={onPageSelected}

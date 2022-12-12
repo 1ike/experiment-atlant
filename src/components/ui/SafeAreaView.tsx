@@ -12,6 +12,7 @@ export function SafeAreaView({ style, ...otherProps }: SafeAreaViewProps) {
   const backgroundColor = theme.colors.background;
 
   return (
-    <DefaultSafeAreaView {...otherProps} style={[{ flex: 1, backgroundColor }, style]} />
+    // eslint-disable-next-line react-native/no-inline-styles
+    <DefaultSafeAreaView style={[{ flex: 1, backgroundColor }, style]} {...otherProps} />
   );
 }

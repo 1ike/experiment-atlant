@@ -10,10 +10,10 @@ export function ButtonPrimary({ containerStyle, buttonStyle, ...otherProps }: Bu
 
   return (
     <Button
-      {...otherProps}
       containerStyle={[styles.container, containerStyle]}
       buttonStyle={[styles.button, buttonStyle]}
       titleStyle={[styles.title, buttonStyle]}
+      {...otherProps}
     />
   );
 }

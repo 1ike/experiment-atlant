@@ -16,11 +16,11 @@ export function Input({
 
   return (
     <DefaultInput
-      {...otherProps}
       containerStyle={[styles.container, containerStyle]}
       inputContainerStyle={[styles.inputContainer, inputContainerStyle]}
       inputStyle={[styles.input, inputStyle]}
       rightIconContainerStyle={[styles.rightIconContainer, rightIconContainerStyle]}
+      {...otherProps}
     />
   );
 }

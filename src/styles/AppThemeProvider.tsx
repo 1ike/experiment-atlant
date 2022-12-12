@@ -18,6 +18,7 @@ function ColorScheme({ children }: ChildrenProps) {
   }, [colorMode]);
 
   return (
+    // eslint-disable-next-line react-native/no-inline-styles
     <View style={{ flex: 1 }}>{children}</View>
   );
 }
