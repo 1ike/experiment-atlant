@@ -15,6 +15,7 @@ declare module '@rneui/themed' {
     screenPaddingVertical: FlexStyle['paddingVertical'];
     fontSizeSmall: number;
     fontSizeMid: number;
+    fontSizeBigHeader: number;
   }
 }
 
@@ -43,4 +44,5 @@ export const theme = createTheme({
   screenPaddingVertical: 15,
   fontSizeSmall: 15,
   fontSizeMid: 18,
+  fontSizeBigHeader: 30,
 });

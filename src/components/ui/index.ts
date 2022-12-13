@@ -12,4 +12,4 @@ export { ButtonClearSecondary } from './Button/ClearSecondary';
 export { ButtonOpenURL } from './Button/OpenURL';
 export { ButtonInText } from './Button/InText';
 
-export { Input } from './forms/Input';
+export { Input, InputProps } from './forms/Input';
