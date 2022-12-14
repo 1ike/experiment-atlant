@@ -3,11 +3,11 @@ import { makeStyles } from '@rneui/themed';
 import { ButtonClearSecondary, ButtonClearSecondaryProps } from './ClearSecondary';
 
 
-export type ButtonInTextProps = ButtonClearSecondaryProps;
+export type ButtonInlineProps = ButtonClearSecondaryProps;
 
-export function ButtonInText({
+export function ButtonInline({
   buttonStyle, titleStyle, ...otherProps
-}:ButtonInTextProps) {
+}:ButtonInlineProps) {
   const styles = useStyles();
 
   return (

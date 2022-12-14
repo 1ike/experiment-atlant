@@ -4,7 +4,7 @@ import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import {
-  Text, View, ButtonClearSecondary, ButtonOpenURL, ButtonPrimary, TextInput, TextInputPassword,
+  Text, View, ButtonClearSecondary, ButtonPrimary, TextInput, TextInputPassword, TextOpenURL,
 } from '$ui';
 
 
@@ -56,20 +56,16 @@ export default function Form() {
         Забыли пароль?
       </ButtonClearSecondary>
 
-
       <ButtonPrimary onPress={handleSubmit(onSubmit)}>Войти</ButtonPrimary>
 
       <View style={styles.agreementContainer}>
-        <Text style={styles.agreement}>Нажимая на кнопку Войти вы соглашаетесь</Text>
-        <View style={styles.agreementRawWithLink}>
-          <Text style={styles.agreement}>на </Text>
-          <ButtonOpenURL
-            titleStyle={styles.agreementButtonTitle}
-            url="https://ya.ru"
-          >
+        <Text style={styles.agreement}>
+          Нажимая на кнопку Войти вы соглашаетесь
+          на&nbsp;
+          <TextOpenURL url="https://ya.ru">
             обработку персональных данных
-          </ButtonOpenURL>
-        </View>
+          </TextOpenURL>
+        </Text>
       </View>
     </View>
   );
@@ -97,16 +93,11 @@ const useStyles = makeStyles((theme) => ({
   },
   agreementContainer: {
     margin: 20,
-    alignItems: 'center',
   },
   agreement: {
+    textAlign: 'center',
     fontSize: theme.fontSizeSmall,
+    lineHeight: theme.fontSizeSmall + (theme.fontSizeSmall * 0.6),
     color: theme.colors.textSecondary,
-  },
-  agreementRawWithLink: {
-    flexDirection: 'row',
-  },
-  agreementButtonTitle: {
-    fontSize: theme.fontSizeSmall,
   },
 }));

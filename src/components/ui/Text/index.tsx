@@ -1,1 +1,1 @@
-export { Text } from '@rneui/themed';
+export { Text, TextProps } from '@rneui/themed';
