@@ -4,9 +4,8 @@ import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import {
-  Text, View, ButtonClearSecondary, ButtonOpenURL, ButtonPrimary,
+  Text, View, ButtonClearSecondary, ButtonOpenURL, ButtonPrimary, TextInput, TextInputPassword,
 } from '$ui';
-import TextInput from '~/components/forms/TextInput';
 
 
 const FormSchema = z.object({
@@ -41,8 +40,13 @@ export default function Form() {
         name="email"
         placeholder="Введите почту"
         keyboardType="email-address"
+        textContentType="emailAddress"
       />
-      <TextInput control={control} name="password" placeholder="Введите пароль" />
+      <TextInputPassword
+        control={control}
+        name="password"
+        placeholder="Введите пароль"
+      />
 
       <ButtonClearSecondary
         containerStyle={styles.forgetPasswordContainer}
