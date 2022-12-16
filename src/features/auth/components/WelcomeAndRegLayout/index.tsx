@@ -5,6 +5,7 @@ import Social from './Social';
 import SkipButton from './SkipButton';
 import Header from '../Header';
 import Form from './Form';
+import WeakCallToAction from './WeakCallToAction';
 
 
 export default function WelcomeAndRegLayout() {
@@ -27,6 +28,13 @@ export default function WelcomeAndRegLayout() {
 
         <Social containerStyle={styles.social} />
 
+        <WeakCallToAction
+          question="Еще нет аккаунта?"
+          title="Зарегистрироваться!"
+          onPress={() => console.log('WeakCallToAction')}
+          containerStyle={styles.weakCallToAction}
+        />
+
       </ScrollView>
     </ScreenLayout>
   );
@@ -43,6 +51,8 @@ const styles = StyleSheet.create({
   },
   social: {
     marginTop: 45,
+  },
+  weakCallToAction: {
     marginBottom: 25,
   },
 });
