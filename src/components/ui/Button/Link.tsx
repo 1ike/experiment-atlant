@@ -1,15 +1,15 @@
 import { ButtonInline, ButtonInlineProps } from './Inline';
-import { useOpenURL } from '../hooks/useOpenUrl';
+import { useLink } from '../hooks/useLink';
 
 
-export type ButtonOpenURLProps = ButtonInlineProps & {
+export type ButtonLinkProps = ButtonInlineProps & {
   url: string,
 };
 
-export function ButtonOpenURL({
+export function ButtonLink({
   url, buttonStyle, titleStyle, ...otherProps
-}: ButtonOpenURLProps) {
-  const handlePress = useOpenURL(url);
+}: ButtonLinkProps) {
+  const handlePress = useLink(url);
 
   return (
     <ButtonInline

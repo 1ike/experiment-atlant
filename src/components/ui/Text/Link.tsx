@@ -1,15 +1,15 @@
 import { Text, TextProps } from '.';
-import { useOpenURL } from '../hooks/useOpenUrl';
+import { useLink } from '../hooks/useLink';
 
 
-type TextOpenURLProps = TextProps & {
+type TextLinkProps = TextProps & {
   url: string,
 };
 
-export function TextOpenURL({
+export function TextLink({
   url, style, ...otherProps
-}: TextOpenURLProps) {
-  const handlePress = useOpenURL(url);
+}: TextLinkProps) {
+  const handlePress = useLink(url);
 
   return (
     <Text

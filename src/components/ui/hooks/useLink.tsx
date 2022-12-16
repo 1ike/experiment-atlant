@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { Alert, Linking } from 'react-native';
 
 
-export function useOpenURL(url: string) {
+export function useLink(url: string) {
   const handlePress = useCallback(async () => {
     const supported = await Linking.canOpenURL(url);
 

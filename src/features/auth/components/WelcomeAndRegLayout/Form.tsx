@@ -4,7 +4,7 @@ import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import {
-  Text, View, ButtonClearSecondary, ButtonPrimary, TextInput, TextInputPassword, TextOpenURL,
+  Text, View, ButtonClearSecondary, ButtonPrimary, TextInput, TextInputPassword, TextLink,
 } from '$ui';
 
 
@@ -62,9 +62,9 @@ export default function Form() {
         <Text style={styles.agreement}>
           Нажимая на кнопку Войти вы соглашаетесь
           на&nbsp;
-          <TextOpenURL url="https://ya.ru">
+          <TextLink url="https://ya.ru">
             обработку персональных данных
-          </TextOpenURL>
+          </TextLink>
         </Text>
       </View>
     </View>

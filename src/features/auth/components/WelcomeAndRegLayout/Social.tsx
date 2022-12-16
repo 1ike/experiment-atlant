@@ -1,7 +1,7 @@
 import { StyleProp, ViewStyle } from 'react-native';
 
 import { makeStyles, SocialIcon, SocialMediaType } from '@rneui/themed';
-import { Text, View, ButtonInText } from '$ui';
+import { Text, View, ButtonInline } from '$ui';
 
 
 type SocialProps = { containerStyle?: StyleProp<ViewStyle> };
@@ -23,16 +23,17 @@ export default function Social({ containerStyle }: SocialProps) {
             type={type}
             // eslint-disable-next-line react/no-array-index-key
             key={i}
+            onPress={() => console.log('type = ', type)}
           />
         ))}
       </View>
       <View style={styles.footer}>
         <Text style={styles.footerText}>Еще нет аккаунта? </Text>
-        <ButtonInText
+        <ButtonInline
           titleStyle={styles.footerEnterButtonTitle}
         >
           Зарегистрироваться!
-        </ButtonInText>
+        </ButtonInline>
       </View>
     </View>
   );
@@ -63,8 +64,11 @@ const useStyles = makeStyles((theme) => ({
   },
   footer: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
   },
   footerText: {
+    textAlign: 'center',
     fontSize: theme.fontSizeSmall,
     color: theme.colors.textSecondary,
   },
