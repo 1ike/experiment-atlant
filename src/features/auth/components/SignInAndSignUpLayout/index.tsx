@@ -5,10 +5,10 @@ import Social from './Social';
 import SkipButton from './SkipButton';
 import Header from '../Header';
 import Form from './Form';
-import WeakCallToAction from './WeakCallToAction';
+import SecondaryCallToAction from './SecondaryCallToAction';
 
 
-export default function WelcomeAndRegLayout() {
+export default function SignInAndSignUpLayout() {
   return (
     <ScreenLayout>
       <ScrollView>
@@ -28,7 +28,7 @@ export default function WelcomeAndRegLayout() {
 
         <Social containerStyle={styles.social} />
 
-        <WeakCallToAction
+        <SecondaryCallToAction
           question="Еще нет аккаунта?"
           title="Зарегистрироваться!"
           onPress={() => console.log('WeakCallToAction')}

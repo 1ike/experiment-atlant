@@ -22,7 +22,7 @@ const setTokensActionCreator = createAction<Tokens>('SET_TOKENS');
  * Non secure persist part of auth (persist with AsyncStorage).
  */
 
-type User = {
+export type User = {
   name: string,
   email: string,
 } | null;
@@ -134,8 +134,9 @@ export const setTokens = setTokensActionCreator;
 
 export const selectAccessToken = (state: RootState) => state
   .auth[nonSecurePersistReducerName].accessToken;
+export const selectRefreshToken = (state: RootState) => state
+  .auth[securePersistReducerName].refreshToken;
 export const isAuth = (state: RootState) => Boolean(
   state.auth[nonSecurePersistReducerName].user,
 );
-export const selectRefreshToken = (state: RootState) => state
-  .auth[securePersistReducerName].refreshToken;
+export const selectUser = (state: RootState) => state.auth[nonSecurePersistReducerName].user;

@@ -1,0 +1,28 @@
+{
+    "authentication": {
+        "accessToken": "ya29.a0AX9GBdWHjv9qlpWz61-QaoBH92uAElGxIVhMfRB96B8lDPd7X5c_YYqrM5Il3cHmu4oqScatr_Ehue4GENt8x_LvAydMOrIAq_TLdFoTxUgF0mFYbBLtakXQiZ3KFCPX5jIPlaehKPZmWF8ItacUPN7uTnHcaCgYKAQISARISFQHUCsbCxulkDymzlnGSPOumokEPOw0163",
+        "expiresIn": "3599",
+        "idToken": undefined,
+        "issuedAt": 1671302576,
+        "refreshToken": undefined,
+        "scope": "email profile 
+openid https: //www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile",
+        "state": "QowQPD9cvp",
+        "tokenType": "Bearer"
+    },
+
+    "error": null,
+    "errorCode": null,
+    "params": {
+        "access_token": "ya29.a0AX9GBdWHjv9qlpWz61-QaoBH92uAElGxIVhMfRB96B8lDPd7X5c_YYqrM5Il3cHmu4oqScatr_Ehue4GENt8x_LvAydMOrIAq_TLdFoTxUgF0mFYbBLtakXQiZ3KFCPX5jIPlaehKPZmWF8ItacUPN7uTnHcaCgYKAQISARISFQHUCsbCxulkDymzlnGSPOumokEPOw0163",
+        "authuser": "0",
+        "exp://192.168.1.10:19000/--/expo-auth-session": "",
+        "expires_in": "3599",
+        "prompt": "consent",
+        "scope": "email profile openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile",
+        "state": "QowQPD9cvp",
+        "token_type": "Bearer"
+    },
+    "type": "success",
+    "url": "exp://192.168.1.10:19000/--/expo-auth-session#state=QowQPD9cvp&access_token=ya29.a0AX9GBdWHjv9qlpWz61-QaoBH92uAElGxIVhMfRB96B8lDPd7X5c_YYqrM5Il3cHmu4oqScatr_Ehue4GENt8x_LvAydMOrIAq_TLdFoTxUgF0mFYbBLtakXQiZ3KFCPX5jIPlaehKPZmWF8ItacUPN7uTnHcaCgYKAQISARISFQHUCsbCxulkDymzlnGSPOumokEPOw0163&token_type=Bearer&expires_in=3599&scope=email%20profile%20openid%20https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&authuser=0&prompt=consent"
+}

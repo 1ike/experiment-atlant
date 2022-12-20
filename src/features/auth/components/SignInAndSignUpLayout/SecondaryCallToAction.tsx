@@ -3,16 +3,16 @@ import { StyleProp, ViewStyle } from 'react-native';
 
 import { Text, View, ButtonInline } from '$ui';
 
-type WeakCallToActionProps = {
+type SecondaryCallToActionProps = {
   question: string,
   title: string,
   onPress: () => void,
   containerStyle?: StyleProp<ViewStyle>
 };
 
-export default function WeakCallToAction({
+export default function SecondaryCallToAction({
   question, title, onPress, containerStyle,
-}: WeakCallToActionProps) {
+}: SecondaryCallToActionProps) {
   const styles = useStyles();
 
   return (
