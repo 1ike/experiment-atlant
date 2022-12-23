@@ -16,7 +16,16 @@ const FormSchema = z.object({
 type Values = z.infer<typeof FormSchema>;
 
 
-export default function Form() {
+export type FormProps = {
+  forgetPasswordOnPress: () => void,
+  callToActionText: string,
+  callToActionOnSubmit: (values: Values) => void,
+};
+
+
+export default function Form({
+  forgetPasswordOnPress, callToActionText, callToActionOnSubmit,
+}: FormProps) {
   const styles = useStyles();
 
   const { control, handleSubmit } = useForm<Values>({
@@ -30,7 +39,7 @@ export default function Form() {
     mode: 'onBlur',
   });
 
-  const onSubmit: SubmitHandler<Values> = (values) => console.log('values = ', values);
+  const onSubmit: SubmitHandler<Values> = (values) => callToActionOnSubmit(values);
 
   /* eslint-disable @typescript-eslint/no-misused-promises */
   return (
@@ -49,6 +58,7 @@ export default function Form() {
       />
 
       <ButtonClearSecondary
+        onPress={forgetPasswordOnPress}
         containerStyle={styles.forgetPasswordContainer}
         buttonStyle={styles.forgetPasswordButton}
         titleStyle={styles.forgetPasswordTitle}
@@ -56,11 +66,15 @@ export default function Form() {
         Забыли пароль?
       </ButtonClearSecondary>
 
-      <ButtonPrimary onPress={handleSubmit(onSubmit)}>Войти</ButtonPrimary>
+      <ButtonPrimary onPress={handleSubmit(onSubmit)}>{callToActionText}</ButtonPrimary>
 
       <View style={styles.agreementContainer}>
         <Text style={styles.agreement}>
-          Нажимая на кнопку Войти вы соглашаетесь
+          Нажимая на кнопку
+          {' '}
+          {callToActionText}
+          {' '}
+          вы соглашаетесь
           на&nbsp;
           <TextLink url="https://ya.ru">
             обработку персональных данных

@@ -11,6 +11,9 @@ export default function useGoHome() {
 
   return (user: User) => {
     dispatch(setUser(user));
-    navigation.navigate('Root');
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'Root' }],
+    });
   };
 }

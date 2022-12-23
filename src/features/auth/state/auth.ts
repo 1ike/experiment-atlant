@@ -2,7 +2,7 @@ import {
   createSlice, PayloadAction, combineReducers, createAction,
 } from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { persistReducer } from 'redux-persist';
+import { PersistConfig, persistReducer } from 'redux-persist';
 
 import type { RootState } from '$store';
 import createSecureStorage from '../../../lib/SecureStorage';
@@ -30,11 +30,13 @@ export type User = {
 type InitialState = {
   accessToken: Token | null,
   user: User | null,
+  skipAuth: boolean,
 };
 
 const initialState: InitialState = {
   accessToken: null,
   user: null,
+  skipAuth: false,
 };
 
 
@@ -49,6 +51,9 @@ const nonSecurePersistSlice = createSlice({
     setUser(state, { payload: user }: PayloadAction<User>) {
       state.user = user;
     },
+    setSkipAuth(state, { payload: skipAuth }: PayloadAction<InitialState['skipAuth']>) {
+      state.skipAuth = skipAuth;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -62,9 +67,10 @@ const nonSecurePersistSlice = createSlice({
 
 const nonSecurePersistReducerName = nonSecurePersistSlice.name;
 
-const nonSecurePersistConfig = {
+const nonSecurePersistConfig: PersistConfig<InitialState> = {
   key: nonSecurePersistReducerName,
   storage: AsyncStorage,
+  whitelist: ['accessToken', 'skipAuth'],
 };
 
 const nonSecurePersistReducer = persistReducer(
@@ -126,7 +132,7 @@ export default combineReducers({
 });
 
 
-export const { setAccessToken, setUser } = nonSecurePersistSlice.actions;
+export const { setAccessToken, setUser, setSkipAuth } = nonSecurePersistSlice.actions;
 export const { setRefreshToken } = securePersistSlice.actions;
 export const logout = logoutActionCreator;
 export const setTokens = setTokensActionCreator;

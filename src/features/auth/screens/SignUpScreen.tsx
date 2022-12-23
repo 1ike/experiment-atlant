@@ -5,7 +5,7 @@ import { setSkipAuth } from '../state/auth';
 import { RootStackScreenProps } from '~/navigation/types';
 
 
-export default function SignInScreen({ navigation }: RootStackScreenProps<'SignIn'>) {
+export default function SignUpScreen({ navigation }: RootStackScreenProps<'SignUp'>) {
   const dispatch = useAppDispatch();
 
   const skipButtonOnPress = () => dispatch(setSkipAuth(true));
@@ -19,19 +19,18 @@ export default function SignInScreen({ navigation }: RootStackScreenProps<'SignI
   };
 
   const secondaryCallToActionOnPress = () => {
-    navigation.navigate('SignUp');
+    navigation.navigate('SignIn');
   };
 
   return (
     <SignInAndSignUpLayout
       skipButtonOnPress={skipButtonOnPress}
-      headerPrimaryText="Приветствую!"
-      headerSecondaryText="Без тебя держать небо было скучно..."
+      headerPrimaryText="Регистрация"
       forgetPasswordOnPress={forgetPasswordOnPress}
-      callToActionText="Войти"
+      callToActionText="Зарегистрироваться"
       callToActionOnSubmit={callToActionOnSubmit}
-      secondaryCallToActionQuestion="Уже есть аккаунт?"
-      secondaryCallToActionTitle="Зарегистрироваться!"
+      secondaryCallToActionQuestion="Еще нет аккаунта?"
+      secondaryCallToActionTitle="Войти!"
       secondaryCallToActionOnPress={secondaryCallToActionOnPress}
     />
   );

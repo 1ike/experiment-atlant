@@ -15,7 +15,7 @@ import { selectOnboardingSkip } from '~/features/onboarding/state/onboarding';
 import Colors from '~/styles/Colors';
 import useColorScheme from '~/styles/hooks/useColorScheme';
 import OnboardingScreen from '~/features/onboarding/screens/OnboardingScreen';
-import AuthNavigator from '~/features/auth/navigation';
+import Auth from '~/features/auth/navigation';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import TabOneScreen from '../screens/TabOneScreen';
@@ -23,39 +23,6 @@ import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from './types';
 import LinkingConfiguration from './LinkingConfiguration';
 
-
-export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
-  return (
-    <NavigationContainer
-      linking={LinkingConfiguration}
-      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
-    >
-      <RootNavigator />
-    </NavigationContainer>
-  );
-}
-
-/**
- * A root stack navigator is often used for displaying modals on top of all other content.
- * https://reactnavigation.org/docs/modal
- */
-const Stack = createNativeStackNavigator<RootStackParamList>();
-
-function RootNavigator() {
-  const onboardingSkip = useAppSelector(selectOnboardingSkip);
-
-  return (
-    <Stack.Navigator>
-      {!onboardingSkip && <Stack.Screen name="Onboarding" component={OnboardingScreen} options={{ headerShown: false }} />}
-      <Stack.Screen name="Auth" component={AuthNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-      {/* <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} /> */}
-      {/* <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
-      </Stack.Group> */}
-    </Stack.Navigator>
-  );
-}
 
 /**
  * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
@@ -116,4 +83,39 @@ function TabBarIcon(props: {
   color: string;
 }) {
   return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
+}
+
+/**
+ * A root stack navigator is often used for displaying modals on top of all other content.
+ * https://reactnavigation.org/docs/modal
+ */
+const Stack = createNativeStackNavigator<RootStackParamList>();
+export type RootStackType = typeof Stack;
+
+function RootNavigator() {
+  const onboardingSkip = useAppSelector(selectOnboardingSkip);
+
+  return (
+    <Stack.Navigator>
+      {!onboardingSkip && <Stack.Screen name="Onboarding" component={OnboardingScreen} options={{ headerShown: false }} />}
+      {renderAuth(Stack)}
+      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+      <Stack.Group screenOptions={{ presentation: 'modal' }}>
+        <Stack.Screen name="Modal" component={ModalScreen} />
+      </Stack.Group>
+    </Stack.Navigator>
+  );
+}
+
+
+export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
+  return (
+    <NavigationContainer
+      linking={LinkingConfiguration}
+      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+    >
+      <RootNavigator />
+    </NavigationContainer>
+  );
 }

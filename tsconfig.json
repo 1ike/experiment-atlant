@@ -4,9 +4,10 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./src/*"],
       "$ui": ["./src/components/ui"],
-      "$store": ["./src/state/store.ts"]
+      "$components": ["./src/components"],
+      "$store": ["./src/state/store.ts"],
+      "~/*": ["./src/*"]
     }
   }
 }

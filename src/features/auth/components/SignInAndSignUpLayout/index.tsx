@@ -4,35 +4,60 @@ import { ScrollView, ScreenLayout } from '$ui';
 import Social from './Social';
 import SkipButton from './SkipButton';
 import Header from '../Header';
-import Form from './Form';
+import Form, { FormProps } from './Form';
 import SecondaryCallToAction from './SecondaryCallToAction';
 
 
-export default function SignInAndSignUpLayout() {
+type SignInAndSignUpLayoutProps = {
+  skipButtonOnPress: () => void,
+
+  headerPrimaryText: string,
+  headerSecondaryText?: string,
+
+  secondaryCallToActionQuestion: string,
+  secondaryCallToActionTitle: string,
+  secondaryCallToActionOnPress: () => void,
+} & FormProps;
+
+export default function SignInAndSignUpLayout({
+  skipButtonOnPress,
+  headerPrimaryText,
+  headerSecondaryText,
+  forgetPasswordOnPress,
+  callToActionText,
+  callToActionOnSubmit,
+  secondaryCallToActionQuestion,
+  secondaryCallToActionTitle,
+  secondaryCallToActionOnPress,
+}: SignInAndSignUpLayoutProps) {
   return (
     <ScreenLayout>
       <ScrollView>
 
         <SkipButton
-          onPress={() => console.log('Пропустить!!!!!!')}
+          onPress={skipButtonOnPress}
           containerStyle={styles.skipButton}
         />
 
         <Header
-          primaryText="Приветствую!"
-          secondaryText="Без тебя держать небо было скучно..."
+          primaryText={headerPrimaryText}
+          secondaryText={headerSecondaryText}
           containerStyle={styles.header}
         />
 
-        <Form />
+        <Form
+          forgetPasswordOnPress={forgetPasswordOnPress}
+          callToActionText={callToActionText}
+          callToActionOnSubmit={callToActionOnSubmit}
+        />
 
         <Social containerStyle={styles.social} />
 
         <SecondaryCallToAction
-          question="Еще нет аккаунта?"
-          title="Зарегистрироваться!"
-          onPress={() => console.log('WeakCallToAction')}
-          containerStyle={styles.weakCallToAction}
+          question={secondaryCallToActionQuestion}
+          title={secondaryCallToActionTitle}
+          onPress={secondaryCallToActionOnPress}
+          containerStyle={styles.secondaryCallToAction}
         />
 
       </ScrollView>
@@ -52,7 +77,7 @@ const styles = StyleSheet.create({
   social: {
     marginTop: 45,
   },
-  weakCallToAction: {
+  secondaryCallToAction: {
     marginBottom: 25,
   },
 });
