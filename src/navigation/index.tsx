@@ -22,6 +22,8 @@ import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from './types';
 import LinkingConfiguration from './LinkingConfiguration';
+import Stack1 from '~/screens/Stack1';
+import Stack2 from '~/screens/Stack2';
 
 
 /**
@@ -96,10 +98,12 @@ function RootNavigator() {
   const onboardingSkip = useAppSelector(selectOnboardingSkip);
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="Stack2">
       {!onboardingSkip && <Stack.Screen name="Onboarding" component={OnboardingScreen} options={{ headerShown: false }} />}
-      {renderAuth(Stack)}
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+      {/* {renderAuth(Stack)}
+      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} /> */}
+      <Stack.Screen name="Stack1" component={Stack1} options={{ title: 'Stack1' }} />
+      <Stack.Screen name="Stack2" component={Stack2} options={{ title: 'Stack2' }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
