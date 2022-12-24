@@ -28,14 +28,13 @@ export default function useGoogleSignIn() {
             { headers: { Authorization: `Bearer ${authentication!.accessToken}` } },
           );
           const userData = (await responseUserData.json()) as User;
-          console.log('emailData = ', userData);
+
           return userData;
         }
 
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
         getUser()
           .then((user) => {
-            console.log('user = ', user);
             goHome(user);
           });
       }

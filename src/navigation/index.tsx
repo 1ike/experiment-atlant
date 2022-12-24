@@ -15,7 +15,7 @@ import { selectOnboardingSkip } from '~/features/onboarding/state/onboarding';
 import Colors from '~/styles/Colors';
 import useColorScheme from '~/styles/hooks/useColorScheme';
 import OnboardingScreen from '~/features/onboarding/screens/OnboardingScreen';
-import Auth from '~/features/auth/navigation';
+import renderAuth from '~/features/auth/navigation';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import TabOneScreen from '../screens/TabOneScreen';

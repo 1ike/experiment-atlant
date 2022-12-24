@@ -1,4 +1,3 @@
-import type { AuthStackScreenProps } from '../navigation';
 import SignInAndSignUpLayout from '../components/SignInAndSignUpLayout';
 import { useAppDispatch } from '$store';
 import { setSkipAuth } from '../state/auth';

@@ -5,7 +5,7 @@ import SignInScreen from '../screens/SignInScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 
 
-export type AuthStackParamList = {
+export type AuthParamList = {
   SignIn: undefined;
   SignUp: undefined;
 };
