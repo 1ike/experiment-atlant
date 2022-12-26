@@ -10,7 +10,7 @@ export default function SignInScreen({ navigation }: RootStackScreenProps<'SignI
   const skipButtonOnPress = () => dispatch(setSkipAuth(true));
 
   const forgetPasswordOnPress = () => {
-    console.log('forgetPasswordOnPress');
+    navigation.navigate('SendEmail');
   };
 
   const callToActionOnSubmit = () => {

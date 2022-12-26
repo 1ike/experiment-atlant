@@ -1,10 +1,9 @@
 import { StyleSheet } from 'react-native';
-import { ScrollView, ScreenLayout } from '$ui';
 
-import Social from './Social';
-import SkipButton from './SkipButton';
+import Layout from '../Layout';
 import Header from '../Header';
 import Form, { FormProps } from './Form';
+import Social from './Social';
 import SecondaryCallToAction from './SecondaryCallToAction';
 
 
@@ -31,49 +30,35 @@ export default function SignInAndSignUpLayout({
   secondaryCallToActionOnPress,
 }: SignInAndSignUpLayoutProps) {
   return (
-    <ScreenLayout>
-      <ScrollView>
+    <Layout>
 
-        <SkipButton
-          onPress={skipButtonOnPress}
-          containerStyle={styles.skipButton}
-        />
+      <Header
+        skipButtonOnPress={skipButtonOnPress}
+        headerPrimaryText={headerPrimaryText}
+        headerSecondaryText={headerSecondaryText}
+      />
 
-        <Header
-          primaryText={headerPrimaryText}
-          secondaryText={headerSecondaryText}
-          containerStyle={styles.header}
-        />
+      <Form
+        forgetPasswordOnPress={forgetPasswordOnPress}
+        callToActionText={callToActionText}
+        callToActionOnSubmit={callToActionOnSubmit}
+      />
 
-        <Form
-          forgetPasswordOnPress={forgetPasswordOnPress}
-          callToActionText={callToActionText}
-          callToActionOnSubmit={callToActionOnSubmit}
-        />
+      <Social containerStyle={styles.social} />
 
-        <Social containerStyle={styles.social} />
+      <SecondaryCallToAction
+        question={secondaryCallToActionQuestion}
+        title={secondaryCallToActionTitle}
+        onPress={secondaryCallToActionOnPress}
+        containerStyle={styles.secondaryCallToAction}
+      />
 
-        <SecondaryCallToAction
-          question={secondaryCallToActionQuestion}
-          title={secondaryCallToActionTitle}
-          onPress={secondaryCallToActionOnPress}
-          containerStyle={styles.secondaryCallToAction}
-        />
-
-      </ScrollView>
-    </ScreenLayout>
+    </Layout>
   );
 }
 
 
 const styles = StyleSheet.create({
-  skipButton: {
-    alignSelf: 'flex-end',
-    marginBottom: 65,
-  },
-  header: {
-    marginBottom: 42,
-  },
   social: {
     marginTop: 45,
   },

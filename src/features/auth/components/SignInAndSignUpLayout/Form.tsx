@@ -4,13 +4,15 @@ import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import {
-  Text, View, ButtonClearSecondary, ButtonPrimary, TextInput, TextInputPassword, TextLink,
+  View, ButtonClearSecondary, TextInput, TextInputPassword,
 } from '$ui';
+import CallToActionButton from '../CallToActionButton';
+import { EmailSchema, PasswordSchema } from '../../lib/validation';
 
 
 const FormSchema = z.object({
-  email: z.string().email({ message: 'Введите корректный email' }),
-  password: z.string().trim().min(5, { message: 'Пароль должен содержать минимум 5 символов' }),
+  email: EmailSchema,
+  password: PasswordSchema,
 });
 
 type Values = z.infer<typeof FormSchema>;
@@ -66,21 +68,10 @@ export default function Form({
         Забыли пароль?
       </ButtonClearSecondary>
 
-      <ButtonPrimary onPress={handleSubmit(onSubmit)}>{callToActionText}</ButtonPrimary>
-
-      <View style={styles.agreementContainer}>
-        <Text style={styles.agreement}>
-          Нажимая на кнопку
-          {' '}
-          {callToActionText}
-          {' '}
-          вы соглашаетесь
-          на&nbsp;
-          <TextLink url="https://ya.ru">
-            обработку персональных данных
-          </TextLink>
-        </Text>
-      </View>
+      <CallToActionButton
+        callToActionText={callToActionText}
+        callToActionOnSubmit={handleSubmit(onSubmit)}
+      />
     </View>
   );
 }
@@ -103,15 +94,6 @@ const useStyles = makeStyles((theme) => ({
   },
   forgetPasswordTitle: {
     fontSize: theme.fontSizeSmall,
-    color: theme.colors.textSecondary,
-  },
-  agreementContainer: {
-    margin: 20,
-  },
-  agreement: {
-    textAlign: 'center',
-    fontSize: theme.fontSizeSmall,
-    lineHeight: theme.fontSizeSmall + (theme.fontSizeSmall * 0.6),
     color: theme.colors.textSecondary,
   },
 }));
