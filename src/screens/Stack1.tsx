@@ -2,13 +2,13 @@ import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navig
 import { CompositeScreenProps } from '@react-navigation/native';
 import { ButtonPrimary } from '$ui';
 import { Text, View } from '~/components/Themed';
-import { RootStackParamList, RootTabScreenProps } from '~/navigation/types';
+import { RootStackParamList } from '~/navigation/types';
 
 
 export type StackParamList1 = {
-  Screen11: undefined;
-  Screen12: undefined;
-  Screen13: undefined;
+  Screen1: undefined;
+  Screen2: undefined;
+  Screen3: undefined;
 };
 
 type StackScreenProps<Screen extends keyof StackParamList1> = CompositeScreenProps<
@@ -16,33 +16,33 @@ type StackScreenProps<Screen extends keyof StackParamList1> = CompositeScreenPro
   NativeStackScreenProps<RootStackParamList>
 >;
 
-function Screen11({ navigation, route }: StackScreenProps<'Screen11'>) {
+function Screen1({ navigation, route }: StackScreenProps<'Screen1'>) {
   return (
     <View>
       <Text>{route.name}</Text>
 
       <ButtonPrimary
-        onPress={() => navigation.navigate('Screen12')}
+        onPress={() => navigation.navigate('Screen2')}
       >
         to 1 2
       </ButtonPrimary>
       <ButtonPrimary
-        onPress={() => navigation.navigate('Screen13')}
+        onPress={() => navigation.navigate('Screen3')}
       >
         to 1 3
       </ButtonPrimary>
       <ButtonPrimary
-        onPress={() => navigation.navigate('Stack2', { screen: 'Screen21' })}
+        onPress={() => navigation.navigate('Stack2', { screen: 'Screen1' })}
       >
         to 2 1
       </ButtonPrimary>
       <ButtonPrimary
-        onPress={() => navigation.navigate('Stack2', { screen: 'Screen22' })}
+        onPress={() => navigation.navigate('Stack2', { screen: 'Screen2' })}
       >
         to 2 2
       </ButtonPrimary>
       <ButtonPrimary
-        onPress={() => navigation.navigate('Stack2', { screen: 'Screen23' })}
+        onPress={() => navigation.navigate('Stack2', { screen: 'Screen3' })}
       >
         to 2 3
       </ButtonPrimary>
@@ -50,33 +50,33 @@ function Screen11({ navigation, route }: StackScreenProps<'Screen11'>) {
   );
 }
 
-function Screen12({ navigation, route }: StackScreenProps<'Screen12'>) {
+function Screen2({ navigation, route }: StackScreenProps<'Screen2'>) {
   return (
     <View>
       <Text>{route.name}</Text>
 
       <ButtonPrimary
-        onPress={() => navigation.navigate('Screen11')}
+        onPress={() => navigation.navigate('Screen1')}
       >
         to 1 1
       </ButtonPrimary>
       <ButtonPrimary
-        onPress={() => navigation.navigate('Screen13')}
+        onPress={() => navigation.navigate('Screen3')}
       >
         to 1 3
       </ButtonPrimary>
       <ButtonPrimary
-        onPress={() => navigation.navigate('Stack2', { screen: 'Screen21' })}
+        onPress={() => navigation.navigate('Stack2', { screen: 'Screen1' })}
       >
         to 2 1
       </ButtonPrimary>
       <ButtonPrimary
-        onPress={() => navigation.navigate('Stack2', { screen: 'Screen22' })}
+        onPress={() => navigation.navigate('Stack2', { screen: 'Screen2' })}
       >
         to 2 2
       </ButtonPrimary>
       <ButtonPrimary
-        onPress={() => navigation.navigate('Stack2', { screen: 'Screen23' })}
+        onPress={() => navigation.navigate('Stack2', { screen: 'Screen3' })}
       >
         to 2 3
       </ButtonPrimary>
@@ -84,33 +84,33 @@ function Screen12({ navigation, route }: StackScreenProps<'Screen12'>) {
   );
 }
 
-function Screen13({ navigation, route }: StackScreenProps<'Screen13'>) {
+function Screen3({ navigation, route }: StackScreenProps<'Screen3'>) {
   return (
     <View>
       <Text>{route.name}</Text>
 
       <ButtonPrimary
-        onPress={() => navigation.navigate('Screen12')}
+        onPress={() => navigation.navigate('Screen2')}
       >
         to 1 2
       </ButtonPrimary>
       <ButtonPrimary
-        onPress={() => navigation.navigate('Screen13')}
+        onPress={() => navigation.navigate('Screen3')}
       >
         to 1 3
       </ButtonPrimary>
       <ButtonPrimary
-        onPress={() => navigation.navigate('Stack2', { screen: 'Screen21' })}
+        onPress={() => navigation.navigate('Stack2', { screen: 'Screen1' })}
       >
         to 2 1
       </ButtonPrimary>
       <ButtonPrimary
-        onPress={() => navigation.navigate('Stack2', { screen: 'Screen22' })}
+        onPress={() => navigation.navigate('Stack2', { screen: 'Screen2' })}
       >
         to 2 2
       </ButtonPrimary>
       <ButtonPrimary
-        onPress={() => navigation.navigate('Stack2', { screen: 'Screen23' })}
+        onPress={() => navigation.navigate('Stack2', { screen: 'Screen3' })}
       >
         to 2 3
       </ButtonPrimary>
@@ -124,9 +124,9 @@ const Stack = createNativeStackNavigator<StackParamList1>();
 export default function Stack1() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Screen11" component={Screen11} />
-      <Stack.Screen name="Screen12" component={Screen12} />
-      <Stack.Screen name="Screen13" component={Screen13} />
+      <Stack.Screen name="Screen1" component={Screen1} />
+      <Stack.Screen name="Screen2" component={Screen2} />
+      <Stack.Screen name="Screen3" component={Screen3} />
     </Stack.Navigator>
   );
 }
