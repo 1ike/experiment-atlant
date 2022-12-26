@@ -1,12 +1,11 @@
-import { PropsWithChildren } from 'react';
-import { ScrollView, ScreenLayout } from '$ui';
+import { ScrollView, ScreenLayout, ScreenLayoutProps } from '$ui';
 
 
 export default function Layout({
-  children,
-}: PropsWithChildren) {
+  children, ...otherProps
+}: ScreenLayoutProps) {
   return (
-    <ScreenLayout>
+    <ScreenLayout {...otherProps}>
       <ScrollView>
         {children}
       </ScrollView>

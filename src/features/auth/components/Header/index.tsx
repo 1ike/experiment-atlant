@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { View } from '$ui';
 
-import SkipButton from './SkipButton';
+import HeaderButton from './Button';
 import HeaderText from './HeaderText';
 
 
@@ -18,7 +18,7 @@ export default function Header({
 }: HeaderProps) {
   return (
     <View>
-      <SkipButton
+      <HeaderButton
         onPress={skipButtonOnPress}
         containerStyle={styles.skipButton}
       />

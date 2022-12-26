@@ -4,7 +4,7 @@ export { View } from './View';
 export { Image } from './Image';
 
 export { SafeAreaView } from './SafeAreaView';
-export { ScreenLayout } from './ScreenLayout';
+export { ScreenLayout, ScreenLayoutProps } from './ScreenLayout';
 export { ScrollView } from './ScrollView';
 
 export { Button } from './Button';

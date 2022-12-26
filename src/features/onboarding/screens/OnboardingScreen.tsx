@@ -5,14 +5,13 @@ import ViewPager, { PagerViewOnPageSelectedEvent } from 'react-native-pager-view
 import {
   Text, View, ButtonClearSecondary, ScreenLayout, ButtonPrimary,
 } from '$ui';
-import { RootStackScreenProps } from '~/navigation/types';
 import { useAppDispatch } from '$store';
 import { onboardingSkip } from '../state/onboarding';
 import Progress from '../components/Progress';
 import { steps } from '../stepData';
 
 
-export default function OnboardingScreen({ navigation }: RootStackScreenProps<'Onboarding'>) {
+export default function OnboardingScreen() {
   const viewPagerRef = useRef<ViewPager>(null);
 
   const [activeStepIndex, setActiveStepIndex] = useState<number>(0);

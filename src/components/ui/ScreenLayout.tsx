@@ -4,11 +4,15 @@ import { SafeAreaView, SafeAreaViewProps } from './SafeAreaView';
 
 
 export type ScreenLayoutProps = SafeAreaViewProps & {
-  withPadding?: boolean
+  withPadding?: boolean,
+  withPaddingHorizontal?: boolean,
+  withPaddingVertical?: boolean,
 };
 
 export function ScreenLayout(props: ScreenLayoutProps) {
-  const { style, withPadding, ...otherProps } = props;
+  const {
+    style, withPadding, withPaddingHorizontal, withPaddingVertical, ...otherProps
+  } = props;
   const { theme } = useTheme();
 
   const paddingHorizontal = theme.screenPaddingHorizontal;
@@ -16,7 +20,12 @@ export function ScreenLayout(props: ScreenLayoutProps) {
 
   return (
     <SafeAreaView
-      style={[withPadding && { paddingHorizontal, paddingVertical }, style]}
+      style={[
+        withPadding && { paddingHorizontal, paddingVertical },
+        !withPadding && withPaddingHorizontal && { paddingHorizontal },
+        !withPadding && withPaddingVertical && { paddingVertical },
+        style,
+      ]}
       {...otherProps}
     />
   );
