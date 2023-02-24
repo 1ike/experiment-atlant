@@ -9,7 +9,7 @@ import { RootStackScreenProps } from '~/navigation/types';
 import Layout from '../../components/Layout';
 import { EmailSchema } from '../../lib/validation';
 import CallToActionButton from '../../components/CallToActionButton';
-import { TextInput } from '$ui';
+import { TextInput, Text } from '$ui';
 
 
 const FormSchema = z.object({
@@ -25,7 +25,7 @@ export type FormProps = {
   callToActionOnSubmit: (values: Values) => void,
 };
 
-export default function SendEmail({ navigation }: RootStackScreenProps<'SendEmail'>) {
+export default function SendEmailScreen({ navigation }: RootStackScreenProps<'SendEmail'>) {
   const dispatch = useAppDispatch();
 
   const { control, handleSubmit } = useForm<Values>({
@@ -46,12 +46,26 @@ export default function SendEmail({ navigation }: RootStackScreenProps<'SendEmai
   };
 
   return (
-    <Layout>
+    <Layout edges={['right', 'bottom', 'left']}>
       <HeaderPasswordRecovery
         skipButtonOnPress={skipButtonOnPress}
         headerSecondaryText="На указанную почту будет отправлен код-пароль для входа в систему"
       />
 
+      <TextInput
+        control={control}
+        name="email"
+        placeholder="Введите почту"
+        keyboardType="email-address"
+        textContentType="emailAddress"
+      />
+      <TextInput
+        control={control}
+        name="email"
+        placeholder="Введите почту"
+        keyboardType="email-address"
+        textContentType="emailAddress"
+      />
       <TextInput
         control={control}
         name="email"
