@@ -146,3 +146,6 @@ export const isAuth = (state: RootState) => Boolean(
   state.auth[nonSecurePersistReducerName].user,
 );
 export const selectUser = (state: RootState) => state.auth[nonSecurePersistReducerName].user;
+export const selectSkipAuth = (state: RootState) => (
+  state.auth[nonSecurePersistReducerName].skipAuth
+);

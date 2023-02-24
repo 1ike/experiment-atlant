@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 /**
  * If you are not familiar with React Navigation, refer to the "Fundamentals" guide:
  * https://reactnavigation.org/docs/getting-started
@@ -22,7 +23,21 @@ import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from './types';
 import LinkingConfiguration from './LinkingConfiguration';
+import { selectSkipAuth } from '~/features/auth/state/auth';
+import BottomTabButton from '~/components/TabBar/BottomTabButton';
+import TabBar from '~/components/TabBar';
 
+
+/**
+ * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
+ */
+function TabBarIcon(props: {
+  name: React.ComponentProps<typeof FontAwesome>['name'];
+  color: string;
+}) {
+  // eslint-disable-next-line react-native/no-inline-styles
+  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
+}
 
 /**
  * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
@@ -33,12 +48,16 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>();
 function BottomTabNavigator() {
   const colorScheme = useColorScheme();
 
+  // eslint-disable-next-line react/function-component-definition
+  const ButtonScreen = () => null;
+
   return (
     <BottomTab.Navigator
       initialRouteName="TabOne"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
       }}
+      tabBar={(props) => <TabBar {...props} />}
     >
       <BottomTab.Screen
         name="TabOne"
@@ -57,11 +76,20 @@ function BottomTabNavigator() {
                 name="info-circle"
                 size={25}
                 color={Colors[colorScheme].text}
+                // eslint-disable-next-line react-native/no-inline-styles
                 style={{ marginRight: 15 }}
               />
             </Pressable>
           ),
         })}
+      />
+      <BottomTab.Screen
+        name="Button"
+        component={ButtonScreen}
+        options={{
+          tabBarLabel: '',
+          tabBarIcon: () => <BottomTabButton />,
+        }}
       />
       <BottomTab.Screen
         name="TabTwo"
@@ -75,15 +103,6 @@ function BottomTabNavigator() {
   );
 }
 
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
-}
 
 /**
  * A root stack navigator is often used for displaying modals on top of all other content.
@@ -94,11 +113,12 @@ export type RootStackType = typeof Stack;
 
 function RootNavigator() {
   const onboardingSkip = useAppSelector(selectOnboardingSkip);
+  const skipAuth = useAppSelector(selectSkipAuth);
 
   return (
     <Stack.Navigator>
       {!onboardingSkip && <Stack.Screen name="Onboarding" component={OnboardingScreen} options={{ headerShown: false }} />}
-      {renderAuth(Stack)}
+      {!skipAuth && renderAuth(Stack)}
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
