@@ -23,7 +23,6 @@ export default function TabBar({ state, descriptors, navigation }: BottomTabBarP
         if (route.name === 'Button') {
           return (
             <View style={styles.tabLayout} key={route.key}>
-              <BottomTabButton style={styles.button} />
               <View style={styles.underButton}>
                 <View style={[styles.tabLayout, styles.tabPaint]} />
                 <UnderTabBarButtonSVG
@@ -33,6 +32,7 @@ export default function TabBar({ state, descriptors, navigation }: BottomTabBarP
                 />
                 <View style={[styles.tabLayout, styles.tabPaint]} />
               </View>
+              <BottomTabButton style={styles.button} />
               <View style={styles.underButtonFooter} />
             </View>
           );
