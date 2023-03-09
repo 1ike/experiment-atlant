@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Atlant",
-    "slug": "Atlant",
+    "slug": "atlant",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -32,9 +32,12 @@
     "web": {
       "favicon": "./assets/images/favicon.png"
     },
+    "plugins": [
+      "sentry-expo"
+    ],
     "extra": {
       "eas": {
-        "projectId": "7b874385-8a80-46f0-91db-e97e4a456379"
+        "projectId": "68bf7e33-3402-47fd-907b-135c37f8c8ac"
       }
     }
   }
