@@ -81,5 +81,9 @@ buck-out/
 .expo/
 web-build/
 dist/
-
+credentials.json
+/credentials
+/android
+metro.config.js
+index.js
 # @end expo-cli

@@ -2,8 +2,10 @@ import * as Google from 'expo-auth-session/providers/google';
 import * as WebBrowser from 'expo-web-browser';
 import { useEffect } from 'react';
 
+import { googleExpoClientId, googleAndroidClientId } from '~/config';
 import { User } from '~/features/auth/state/auth';
 import useGoHome from './useGoHome';
+
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -12,8 +14,8 @@ export default function useGoogleSignIn() {
 
 
   const [request, response, promptAsync] = Google.useAuthRequest({
-    expoClientId: '198119258557-mut8d8rlcbu51vsird091481der5g37u.apps.googleusercontent.com',
-    androidClientId: '198119258557-586vgk1dbag6v252s3h8653r4ol44hot.apps.googleusercontent.com',
+    // expoClientId: googleExpoClientId, // deprecated?
+    androidClientId: googleAndroidClientId,
   });
 
   useEffect(() => {
@@ -24,7 +26,7 @@ export default function useGoogleSignIn() {
         // eslint-disable-next-line no-inner-declarations
         async function getUser() {
           const responseUserData = await fetch(
-            'https://www.googleapis.com/oauth2/v1/userinfo',
+            'https://www.googleapis.com/userinfo/v2/me',
             { headers: { Authorization: `Bearer ${authentication!.accessToken}` } },
           );
           const userData = (await responseUserData.json()) as User;
@@ -36,17 +38,16 @@ export default function useGoogleSignIn() {
         getUser()
           .then((user) => {
             goHome(user);
-          });
+          })
+          .catch((error) => console.error(error));
       }
     }
   }, [response, goHome]);
 
-  const loading = Boolean(request);
-
   return {
     onPress: () => {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      if (loading) promptAsync();
+      if (request) promptAsync();
     },
   };
 }

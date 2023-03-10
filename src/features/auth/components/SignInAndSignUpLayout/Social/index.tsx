@@ -3,6 +3,7 @@ import { StyleProp, ViewStyle, ImageRequireSource } from 'react-native';
 import { makeStyles } from '@rneui/themed';
 import { Text, View, Image } from '$ui';
 import useGoogleSignIn from './hooks/useGoogleSignIn';
+import useVKSignIn from './hooks/useVKSignIn';
 
 
 /* eslint-disable global-require, @typescript-eslint/no-var-requires */
@@ -18,6 +19,7 @@ export default function Social({ containerStyle }: SocialProps) {
   const styles = useStyles();
 
   const google = useGoogleSignIn();
+  const vk = useVKSignIn();
 
 
   type Data = {
@@ -36,7 +38,7 @@ export default function Social({ containerStyle }: SocialProps) {
     },
     {
       img: vkImg,
-      onPress: google.onPress,
+      onPress: vk.onPress,
     },
   ];
 
@@ -87,11 +89,10 @@ const useStyles = makeStyles((theme) => ({
   icons: {
     flexDirection: 'row',
     marginVertical: 45,
-    gap: 90,
+    gap: 20,
   },
   icon: {
     height: iconDimension,
     width: iconDimension,
-    marginHorizontal: 10,
   },
 }));
